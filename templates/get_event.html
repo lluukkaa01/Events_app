@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Event data</title>
+	<style>
+	    a {
+        text-decoration: none;
+        }
+		.container {
+		    width: 250px;
+		    height: 220px;
+			background-color: #f2f2f2;
+			border-radius: 20px;
+			padding: 20px;
+			margin: 0 auto;
+			margin-top: 250px;
+			display: flex;
+			flex-direction: column;
+
+		}
+		.name {
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		.data {
+		    font-size: 18px;
+            color: #555;
+			margin-bottom: 5px;
+		}
+        .DeleteButton {
+            background-color: #c91818;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+    }
+
+        .UpdateButton {
+            background-color: #174b78;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+    }
+
+    .BackButton {
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        background-color: #c91818;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+	</style>
 </head>
 <body>
-
+    {% for event in events %}
+    <div class="container">
+        <div class="name">{{event.event_name}}  id:{{event.id}}</div>
+        <div class="data">Description: {{event.description}}</div>
+        <div class="data">Category: {{event.category}}</div>
+        <div class="data">Holding_time: {{event.holding_time}}</div>
+        <div class="data">Location: {{event.location}}</div>
+        <div class="data">Age_restriction: {{event.age_restriction}}</div>
+        <div style="margin-top: 25px;">
+            <a href="{{ url_for('delete_event') }}?id={{event.id}}" class="DeleteButton">Delete event</a>
+            <a href="{{ url_for('update') }}?id={{event.id}}" class="UpdateButton">Update event</a>
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}" class="BackButton">Back</a>
+    {% endfor %}
 </body>
 </html>

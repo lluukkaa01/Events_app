@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Success</title>
+	<style>
+		.message {
+			border: 2px solid #000;
+			padding: 10px;
+			text-align: center;
+			background-color: #f2f2f2;
+			box-shadow: 2px 2px 5px #888;
+			max-width: 600px;
+			margin: 0 auto;
+			margin-top: 300px;
+		}
+		.message h2 {
+			font-family: Arial, sans-serif;
+			color: #333;
+			margin-top: 0;
+		}
+		.message p {
+			font-family: Arial, sans-serif;
+			color: #666;
+		}
+		.message img {
+			max-width: 100%;
+			height: auto;
+			margin-top: 10px;
+		}
+		.back-button {
+			float: right;
+			font-family: Arial, sans-serif;
+			color: #333;
+			text-decoration: none;
+			font-size: 16px;
+			margin-top: -20px;
+			margin-right: -35px;
+			padding: 5px 10px;
+			background-color: #ddd;
+			border-radius: 5px;
+			box-shadow: 1px 1px 3px #888;
+		}
+		.back-button:hover {
+			background-color: #ccc;
+		}
+	</style>
 </head>
 <body>
-
+	<div class="message">
+		<a href="{{ url_for('index') }}" class="back-button">Back</a>
+		<h2>Hello there!</h2>
+		<p>{{massage}}</p>
+	</div>
 </body>
 </html>
