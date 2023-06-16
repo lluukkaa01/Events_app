@@ -32,6 +32,28 @@ class Event(db.Model):
 
         }
 
+@app.route('/events')
+def event_page():
+    id = request.args.get('id')
+    if id:
+        events = [events.to_dict() for events in Event.query.filter(Event.id == id)]
+        return render_template('get_event.html', events=events)
+
+
+@app.route('/filter', methods=['GET'])
+def filter_events():
+    event = request.args.get('event')
+    print(event)
+    events = [events.to_dict() for events in Event.query.filter(Event.event_name == event)]
+    a = []
+    print(events)
+    if event == '':
+        events = [events.to_dict() for events in Event.query.all()]
+    elif events:
+        pass
+    elif events == a:
+        events = [events.to_dict() for events in Event.query.filter(Event.description == event)]
+    return render_template('index.html', events=events)
 
 
 @app.route('/update', methods=['GET', 'PUT', 'POST'])
