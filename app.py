@@ -106,6 +106,29 @@ def index():
     return render_template('index.html', events=event)
 
 
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    form = Events()
+    if form.validate_on_submit():
+        event_name = form.event_name.data
+        description = form.description.data
+        category = form.category.data
+        holding_time = form.holding_time.data
+        location = form.location.data
+        age_restriction = form.age_restriction.data
+        event = Event(event_name=event_name, description=description, category=category, holding_time=holding_time,
+                      location=location, age_restriction=age_restriction)
+        db.session.add(event)
+        db.session.commit()
+        return redirect(url_for('success'))
+    return render_template('create.html', form=form)
+
+
+@app.route('/success')
+def success():
+    massage = f'Event successfully added'
+    return render_template('success page.html', massage=massage)
+
 
 
 with app.app_context():
