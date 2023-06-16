@@ -87,8 +87,6 @@ def updated():
     return render_template('success page.html', massage=massage)
 
 
-
-
 @app.route('/delete')
 def delete_event():
     id = request.args.get('id')
