@@ -89,5 +89,28 @@ def updated():
 
 
 
+@app.route('/delete')
+def delete_event():
+    id = request.args.get('id')
+    event = Event.query.get(id)
+    db.session.delete(event)
+    db.session.commit()
+    massage = f"Event successfully deleted"
+    return render_template('success page.html', massage=massage)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/')
+def index():
+    event = [events.to_dict() for events in Event.query.all()]
+    return render_template('index.html', events=event)
+
+
+
+
 with app.app_context():
     db.create_all()
