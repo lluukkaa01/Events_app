@@ -43,10 +43,8 @@ def event_page():
 @app.route('/filter', methods=['GET'])
 def filter_events():
     event = request.args.get('event')
-    print(event)
     events = [events.to_dict() for events in Event.query.filter(Event.event_name == event)]
     a = []
-    print(events)
     if event == '':
         events = [events.to_dict() for events in Event.query.all()]
     elif events:
