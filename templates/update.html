@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Update Event</title>
+	<style>
+
+	    h1 {
+         border: 1px solid black;
+         padding: 10px;
+         margin: 0 auto;
+         background-color: #4CAF50;
+         color: white;
+         width: 500px;
+  }
+      .input_text{
+         padding: 5px;
+         border: 1px solid black;
+         border-radius: 5px;
+         background-color: #f2f2f2;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         font-size: 24px;
+         line-height: 1.2;
+         margin: 0 auto;
+         margin-bottom: -20px;
+         width: 500px;
+      }
+      .input_submit {
+        display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         padding: 5px;
+         margin: 0 auto;
+         width: 200px;
+      }
+
+	</style>
 </head>
 <body>
-
+	<h1>Update Event</h1>
+	<form method="POST" action="{{ url_for('update') }}">
+         <input type="hidden" name="_method" value="PUT" />
+		{{ form.hidden_tag() }}
+        <p>
+            <div class="input_text">Old event name: {{ event.event_name }} <br> Write new event name: </div><br>
+            <div class="input_text">{{ form.event_name(size=20) }}</div><br>
+            {% for error in form.event_name.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            <div class="input_text">Old event description: {{ event.description }} <br> Write new event description: </div><br>
+            <div class="input_text">{{ form.description() }}</div><br>
+            {% for error in form.description.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            <div class="input_text">Old event category: {{ event.category }} <br> Write new event category: </div><br>
+            <div class="input_text">{{ form.category(size=20) }}</div><br>
+            {% for error in form.category.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            <div class="input_text">Old event holding time: {{ event.holding_time }} <br> Write new event holding time: </div><br>
+            <div class="input_text">{{ form.holding_time(size=20) }}</div><br>
+            {% for error in form.holding_time.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            <div class="input_text">Old event location: {{ event.location }} <br> Write new event location: </div><br>
+            <div class="input_text">{{ form.location(size=20) }}</div><br>
+            {% for error in form.location.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            <div class="input_text">Old event age restriction: {{ event.age_restriction }} <br> Write new event age restriction: </div><br>
+            <div class="input_text">{{ form.age_restriction(size=20) }}</div><br>
+            {% for error in form.age_restriction.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            <div class="input_submit">{{ form.submit() }}</div>
+        </p>
+	</form>
 </body>
 </html>
